@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title> Anandhanunni ❤️ Amrutha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Great Vibes';
+  overflow-x:hidden;
+  color:#2b1b0f;
+}
+
+/* 🛕 BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    url('https://www.transparenttextures.com/patterns/mandala.png'),
+    linear-gradient(180deg,#fff3e6,#fffaf3);
+  opacity:.5;
+  z-index:-3;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top,#ffb84d33,transparent 60%),
+    radial-gradient(circle at bottom,#ff3b3b22,transparent 70%);
+  z-index:-2;
+}
+
+/* 🌸 FLOATING */
+.flowers{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+}
+
+.float{
+  position:absolute;
+  animation:fall linear infinite;
+  opacity:.8;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10vh);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(110vh);opacity:0}
+}
+
+/* 🛕 HEADER */
+header{
+  height:55vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  text-align:center;
+}
+
+header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=1400') center/cover;
+  filter:blur(4px) brightness(.65);
+  transform:scale(1.1);
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(90,0,0,.55),rgba(0,0,0,.7));
+}
+
+.hero{
+  z-index:2;
+  color:#fff;
+}
+
+/* 🪔 FULL TEXT HOVER + SCALE (ALL TEXT) */
+body *{
+  transition: all 0.25s ease;
+}
+
+/* global hover effect */
+body *:hover{
+  transform: scale(1.03);
+}
+
+/* prevent layout breaking on big blocks */
+section:hover{
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* HEADER TEXT */
+h1{
+  font-family:'Great Vibes';
+  font-size:50px;
+  color:#ffd700;
+  transition: all 0.4s ease;
+}
+
+/* 💥 HOVER EFFECT */
+h1:hover{
+  transform: scale(1.25);
+  color:#ff1744;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(255,23,68,0.8);
+}
+
+/* 📜 CARDS */
+section{
+  max-width:650px;
+  margin:22px auto;
+  padding:22px;
+  text-align:center;
+  background:rgba(255,255,255,.92);
+  border-radius:18px;
+  border:1px solid rgba(255,140,0,.3);
+  box-shadow:0 12px 30px rgba(255,140,0,.2);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.8s ease;
+}
+
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.title{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:30px;
+  background:linear-gradient(90deg,#d97706,#b91c1c);
+  color:#fff;
+  font-size:14px;
+}
+
+.names{
+  font-size:36px;
+  color:#7c2d12;
+  margin:10px 0;
+}
+
+.round{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:3px solid #f59e0b;
+  object-fit:cover;
+}
+
+/* 📍 BUTTON */
+.btn{
+  margin-top:10px;
+  padding:8px 14px;
+  border:none;
+  border-radius:20px;
+  background:#b45309;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* 🌍 MAP POPUP */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.box{
+  width:90%;
+  max-width:420px;
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+iframe{
+  width:100%;
+  height:280px;
+  border:0;
+}
+
+.red-pin{
+  color:#e11d48;
+  font-size:18px;
+  margin-right:6px;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+}
+
+/* 🪔 DIVINE BLESSINGS SPECIAL HOVER */
+.highlight{
+  font-size:18px;
+  display:inline-block;
+  margin-top:8px;
+  transition: all 0.3s ease;
+}
+
+.highlight:hover,
+.content:hover{
+  transform: scale(1.2);
+  letter-spacing: 1px;
+  color:#ffd700;
+}
+
+/* 📍 FIXED LOCATION SECTION */
+.location-info{
+  margin-top:10px;
+  font-size:18px;
+  color:#7c2d12;
+}
+.love{
+  position:fixed;
+  font-size:20px;
+  pointer-events:none;
+  animation:floatLove 1.2s linear forwards;
+  z-index:9999;
+}
+
+@keyframes floatLove{
+  0%{
+    transform:translateY(0) scale(1);
+    opacity:1;
+  }
+  100%{
+    transform:translateY(-120px) scale(1.8);
+    opacity:0;
+  }
+}
+@media (max-width:768px){
+  h1:active{
+    transform: scale(1.2);
+    color:#ff1744;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="flowers"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="hero">
+    <h1>Anandhanunni <br>❤️<br> Amrutha</h1>
+
+    <div class="highlight">🪔 Divine Blessings</div>
+
+    <div class="content">
+      🗓 May 3rd, 2026 <br>
+      🪔 Muhurtham: 11:55 AM – 12:15 PM <br>
+
+      <!-- FIXED LOCATION -->
+      <div class="location-info">
+        <i class="fa-solid fa-location-pin red-pin"></i>
+        Bride’s Residence
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- GROOM -->
+<section>
+  <div class="title">Groom</div>
+  <div class="names">Anandhanunni</div>
+  <img class="round" src="groom.jpg">
+</section>
+
+<!-- BRIDE -->
+<section>
+  <div class="title">Bride</div>
+  <div class="names">Amrutha</div>
+  <img class="round" src="bride.jpg">
+</section>
+
+<!-- MUHURTHAM -->
+<section>
+  <div class="title">Muhurtham</div>
+  <div class="names">May 3rd, 2026</div>
+  <p>🪔 Time: 11:55 AM – 12:15 PM</p>
+</section>
+
+<!-- RECEPTION -->
+<section>
+  <div class="title">Reception</div>
+  <div class="names">Krishna Auditorium</div>
+
+  <!-- FIXED LOCATION -->
+  <p class="location-info">
+    <i class="fa-solid fa-location-pin red-pin"></i>
+    Krishna Auditorium, Pazhaveed
+  </p>
+
+  <p>6:00 PM onwards</p>
+
+  <button class="btn" onclick="openMap('Krishna Auditorium Pazhaveed')">
+    <i class="fa-solid fa-location-pin red-pin"></i> View Map
+  </button>
+</section>
+
+<!-- MAP -->
+<div class="modal" id="modal">
+  <div class="box">
+    <iframe id="map"></iframe>
+  </div>
+</div>
+
+<script>
+
+/* 🌸 FLOAT */
+const flowers=document.querySelector('.flowers');
+const emojis=["🌸","🌼","🪔"];
+
+for(let i=0;i<25;i++){
+  const d=document.createElement('div');
+  d.className="float";
+  d.innerHTML=emojis[Math.random()*3|0];
+  d.style.left=Math.random()*100+"vw";
+  d.style.animationDuration=(5+Math.random()*6)+"s";
+  flowers.appendChild(d);
+}
+
+/* MAP */
+function openMap(place){
+  document.getElementById("map").src=
+  "https://www.google.com/maps?q="+encodeURIComponent(place)+"&output=embed";
+  document.getElementById("modal").style.display="flex";
+}
+
+/* SCROLL */
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(s=>{
+    if(s.getBoundingClientRect().top<window.innerHeight-80){
+      s.classList.add("show");
+    }
+  });
+});
+const title = document.querySelector("h1");
+
+title.addEventListener("mouseenter", (e) => {
+  for(let i=0;i<6;i++){
+    const love = document.createElement("div");
+    love.className = "love";
+    love.innerHTML = "❤️";
+
+    love.style.left = (e.clientX + Math.random()*40 - 20) + "px";
+    love.style.top = (e.clientY + Math.random()*20) + "px";
+
+    document.body.appendChild(love);
+
+    setTimeout(() => love.remove(), 1200);
+  }
+});
+</script>
+
+</body>
+</html>
