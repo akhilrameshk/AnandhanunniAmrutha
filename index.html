@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title> Anandhanunni ❤️ Amrutha</title>
+<title>Anandhanunni ❤️ Amrutha</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
@@ -30,16 +30,6 @@ body::before{
   z-index:-3;
 }
 
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at top,#ffb84d33,transparent 60%),
-    radial-gradient(circle at bottom,#ff3b3b22,transparent 70%);
-  z-index:-2;
-}
-
 /* 🌸 FLOATING */
 .flowers{
   position:fixed;
@@ -51,7 +41,6 @@ body::after{
 .float{
   position:absolute;
   animation:fall linear infinite;
-  opacity:.8;
 }
 
 @keyframes fall{
@@ -62,7 +51,7 @@ body::after{
 
 /* 🛕 HEADER */
 header{
-  height:60vh;
+  height:65vh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -75,93 +64,98 @@ header::before{
   position:absolute;
   inset:0;
   background:url('./hero.jpg') center/cover;
-  filter:blur(4px) brightness(.55) saturate(1.2);
-  transform:scale(1.1);
+  filter:blur(4px) brightness(.55);
 }
 
 header::after{
   content:"";
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(to bottom,rgba(90,0,0,.55),rgba(0,0,0,.7)),
-    radial-gradient(circle at center, rgba(255,215,0,0.25), transparent 70%);
+  background:linear-gradient(to bottom,rgba(90,0,0,.55),rgba(0,0,0,.7));
 }
 
-.hero{
-  z-index:2;
-  color:#fff;
-}
+.hero{z-index:2;color:#fff;}
 
-/* TEXT */
 h1{
   font-size:50px;
   color:#ffd700;
+  transition:.4s;
 }
 
-.highlight{
-  font-size:18px;
+h1:hover{
+  transform:scale(1.2);
+  color:#ff1744;
+}
+
+/* 🪔 HEADER CONTENT (FIXED) */
+.content{
+  margin-top:10px;
+  font-family:'Poppins';
+}
+
+.location-info{
   margin-top:8px;
+  font-size:16px;
 }
 
-/* 🔥 PREMIUM COUNTDOWN */
+.red-pin{
+  color:#e11d48;
+  margin-right:6px;
+}
+
+/* 🔥 COUNTDOWN */
 .countdown-box{
   display:flex;
   justify-content:center;
   gap:12px;
-  margin-top:18px;
+  margin-top:15px;
   flex-wrap:wrap;
 }
 
 .time{
-  min-width:75px;
-  padding:12px 10px;
-  border-radius:14px;
+  min-width:80px;
+  padding:14px 12px;
+  border-radius:16px;
   text-align:center;
+  display:flex;
+  flex-direction:column;   /* 🔥 stack vertically */
+  align-items:center;
+  justify-content:center;
+  gap:4px;                /* 🔥 space between number & text */
+
   background:rgba(255,255,255,0.08);
-  backdrop-filter: blur(8px);
   border:1px solid rgba(255,215,0,0.35);
-  box-shadow:0 0 15px rgba(255,215,0,0.25);
-  transition:.3s;
+  backdrop-filter: blur(8px);
 }
 
-.time:hover{
-  transform:translateY(-6px) scale(1.08);
-  box-shadow:0 0 25px rgba(255,215,0,0.6);
-}
-
+/* NUMBER */
 .time span{
-  font-size:26px;
+  font-size:28px;
   font-weight:bold;
-  display:block;
   color:#ffd700;
   font-family:'Poppins';
-  animation:pulse 2s infinite;
+  line-height:1;
 }
 
+/* LABEL (Days, Hours...) */
 .time small{
-  font-size:11px;
+  font-size:12px;
   color:#fff3e6;
-}
-
-@keyframes pulse{
-  from{ text-shadow:0 0 5px #ffd700; }
-  to{ text-shadow:0 0 20px #ffd700; }
+  letter-spacing:1px;
 }
 
 /* 📜 CARDS */
 section{
   max-width:650px;
-  margin:22px auto;
-  padding:22px;
+  margin:30px auto;
+  padding:25px;
   text-align:center;
-  background:rgba(255,255,255,.92);
-  border-radius:18px;
-  border:1px solid rgba(255,140,0,.3);
-  box-shadow:0 12px 30px rgba(255,140,0,.2);
+  background:rgba(255,255,255,.95);
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(255,140,0,.2);
   opacity:0;
   transform:translateY(40px);
-  transition:.8s ease;
+  transition:.6s;
 }
 
 section.show{
@@ -169,48 +163,77 @@ section.show{
   transform:translateY(0);
 }
 
+section:hover{
+  transform:translateY(-5px) scale(1.02);
+}
+
 .title{
+  display:inline-block;
   padding:6px 14px;
   border-radius:30px;
   background:linear-gradient(90deg,#d97706,#b91c1c);
   color:#fff;
+  margin-bottom:10px;
 }
 
 .names{
-  font-size:36px;
-  color:#7c2d12;
+  font-size:34px;
+  margin:10px 0;
 }
 
 .round{
-  width:120px;
-  height:120px;
+  width:130px;
+  height:130px;
   border-radius:50%;
   border:3px solid #f59e0b;
+  object-fit:cover;
 }
 
-/* ❤️ HEARTS FIXED */
+/* 📍 BUTTON */
+.btn{
+  margin-top:12px;
+  padding:10px 16px;
+  border:none;
+  border-radius:20px;
+  background:#b45309;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ❤️ HEARTS (BOTTOM → TOP FIXED) */
 .love{
   position:fixed;
-  bottom:-30px;
+  bottom:-20px;
   font-size:20px;
   pointer-events:none;
   animation:floatUp linear forwards;
-  z-index:9999;
 }
 
 @keyframes floatUp{
-  0%{
-    transform:translateY(0) translateX(0) scale(1);
-    opacity:1;
-  }
-  50%{
-    transform:translateY(-60vh) translateX(25px) scale(1.3);
-  }
-  100%{
-    transform:translateY(-120vh) translateX(-25px) scale(1.6);
-    opacity:0;
-  }
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-120vh);opacity:0;}
 }
+
+/* 🌍 MAP */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.6);
+  align-items:center;
+  justify-content:center;
+}
+
+.box{
+  width:90%;
+  max-width:420px;
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+iframe{width:100%;height:280px;border:0;}
+
 </style>
 </head>
 
@@ -219,69 +242,114 @@ section.show{
 <div class="flowers"></div>
 
 <header>
-  <div class="hero">
-    <h1>Anandhanunni <br>❤️<br> Amrutha</h1>
+<div class="hero">
+<h1>Anandhanunni <br>❤️<br> Amrutha</h1>
 
-    <div class="highlight">🪔 Divine Blessings</div>
+<!-- ✅ HEADER CONTENT FIXED -->
+<div class="content">
+🗓 May 3rd, 2026 <br>
+🪔 Muhurtham: 11:55 AM – 12:15 PM
 
-    <div>
-      🗓 May 3rd, 2026 <br>
-      🪔 Muhurtham: 11:55 AM – 12:15 PM
-    </div>
+<div class="location-info">
+<i class="fa-solid fa-location-dot red-pin"></i>
+Bride’s Residence
+</div>
+</div>
 
-    <div class="countdown-box">
-      <div class="time"><span id="days">00</span><small>Days</small></div>
-      <div class="time"><span id="hours">00</span><small>Hours</small></div>
-      <div class="time"><span id="minutes">00</span><small>Min</small></div>
-      <div class="time"><span id="seconds">00</span><small>Sec</small></div>
-    </div>
+<!-- 🔥 TIMER -->
+<div class="countdown-box">
+<div class="time"><span id="days">00</span><small>Days</small></div>
+<div class="time"><span id="hours">00</span><small>Hours</small></div>
+<div class="time"><span id="minutes">00</span><small>Min</small></div>
+<div class="time"><span id="seconds">00</span><small>Sec</small></div>
+</div>
 
-  </div>
+</div>
 </header>
 
+<!-- 👤 GROOM -->
 <section>
-  <div class="title">Groom</div>
-  <div class="names">Anandhanunni</div>
-  <img class="round" src="groom.jpg">
+<div class="title">Groom</div>
+<div class="names">Anandhanunni</div>
+<img class="round" src="groom.jpg">
 </section>
 
+<!-- 👰 BRIDE -->
 <section>
-  <div class="title">Bride</div>
-  <div class="names">Amrutha</div>
-  <img class="round" src="bride.jpg">
+<div class="title">Bride</div>
+<div class="names">Amrutha</div>
+<img class="round" src="bride.jpg">
 </section>
+
+<!-- 🪔 MUHURTHAM (FIXED LAYOUT + BUTTON) -->
+<section>
+<div class="title">Muhurtham</div>
+<div class="names">May 3rd, 2026</div>
+
+<p>🪔 Time: 11:55 AM – 12:15 PM</p>
+
+<div class="location-info">
+<i class="fa-solid fa-location-dot red-pin"></i>
+Bride’s Residence
+</div>
+
+<button class="btn" onclick="openMap('Bride Residence')">
+<i class="fa-solid fa-location-dot red-pin"></i> View Location
+</button>
+</section>
+
+<!-- 🎉 RECEPTION -->
+<section>
+<div class="title">Reception</div>
+<div class="names">Krishna Auditorium</div>
+
+<div class="location-info">
+<i class="fa-solid fa-location-dot red-pin"></i>
+Krishna Auditorium, Pazhaveed
+</div>
+
+<p>6:00 PM onwards</p>
+
+<button class="btn" onclick="openMap('Krishna Auditorium Pazhaveed')">
+<i class="fa-solid fa-location-dot red-pin"></i> View Map
+</button>
+</section>
+
+<!-- MAP -->
+<div class="modal" id="modal">
+<div class="box">
+<iframe id="map"></iframe>
+</div>
+</div>
 
 <script>
 
 /* 🌸 FLOWERS */
 const flowers=document.querySelector('.flowers');
-const emojis=["🌸","🌼","🪔"];
+["🌸","🌼","🪔"].forEach(e=>{
+  for(let i=0;i<8;i++){
+    let d=document.createElement('div');
+    d.className="float";
+    d.innerHTML=e;
+    d.style.left=Math.random()*100+"vw";
+    d.style.animationDuration=(5+Math.random()*5)+"s";
+    flowers.appendChild(d);
+  }
+});
 
-for(let i=0;i<25;i++){
-  const d=document.createElement('div');
-  d.className="float";
-  d.innerHTML=emojis[Math.random()*3|0];
-  d.style.left=Math.random()*100+"vw";
-  d.style.animationDuration=(5+Math.random()*6)+"s";
-  flowers.appendChild(d);
-}
-
-/* ❤️ HEARTS FIXED */
+/* ❤️ HEARTS (BOTTOM FIXED) */
 setInterval(()=>{
-  const love=document.createElement("div");
+  let love=document.createElement("div");
   love.className="love";
   love.innerHTML="❤️";
-
   love.style.left=Math.random()*100+"vw";
-  love.style.fontSize=(16 + Math.random()*24)+"px";
 
-  const duration=4 + Math.random()*4;
+  const duration=3+Math.random()*2;
   love.style.animationDuration=duration+"s";
 
   document.body.appendChild(love);
-  setTimeout(()=>love.remove(), duration*1000);
-
-},250);
+  setTimeout(()=>love.remove(),duration*1000);
+},300);
 
 /* ⏳ COUNTDOWN */
 const weddingDate=new Date("May 3, 2026 11:55:00").getTime();
@@ -295,6 +363,23 @@ setInterval(()=>{
   document.getElementById("minutes").innerText=Math.floor((gap/(1000*60))%60);
   document.getElementById("seconds").innerText=Math.floor((gap/1000)%60);
 },1000);
+
+/* MAP */
+function openMap(place){
+  document.getElementById("map").src=
+  "https://www.google.com/maps?q="+encodeURIComponent(place)+"&output=embed";
+  document.getElementById("modal").style.display="flex";
+}
+
+/* SCROLL */
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(s=>{
+    if(s.getBoundingClientRect().top<window.innerHeight-80){
+      s.classList.add("show");
+    }
+  });
+});
 
 </script>
 
