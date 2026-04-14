@@ -232,6 +232,68 @@ section:hover{
   overflow:hidden;
 }
 
+.round-img{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  border:3px solid #f59e0b;
+  object-fit:cover;
+  transition:.4s;
+}
+
+/* HOVER EFFECT */
+.img-box:hover .round-img{
+  transform:scale(1.1);
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  font-size:14px;
+  font-family:'Poppins';
+  transition:.3s;
+}
+
+.img-box:hover .overlay{
+  opacity:1;
+}
+/* STOP BACKGROUND SCROLL */
+body.no-scroll{
+  overflow:hidden;
+}
+
+/* CLOSE BUTTON STYLE */
+.box{
+  width:90%;
+  max-width:420px;
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative; /* REQUIRED */
+}
+
+/* 🔥 MAKE BUTTON FLOAT INSIDE MAP */
+.close-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#b91c1c;
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:32px;
+  height:32px;
+  cursor:pointer;
+  z-index:20;
+  font-size:16px;
+}
 iframe{width:100%;height:280px;border:0;}
 
 </style>
@@ -270,17 +332,34 @@ Bride’s Residence
 <!-- 👤 GROOM -->
 <section>
 <div class="title">Groom</div>
-<div class="names">Anandhanunni</div>
-<img class="round" src="groom.jpg">
-</section>
 
+
+<div class="names">Son of Sabu Nalanunni & Suprabha Sabu</div>
+<img class="round" src="groom.jpg">
+<div class="names">Anandhanunni</div>
+
+
+
+</section>
+<section>
+    <div class="title">Groom's Family</div>
+    <div class="names">Sabu Nalanunni & Family</div>
+    <img src="groom-family.jpg" class="round-img">
+</section>
 <!-- 👰 BRIDE -->
 <section>
 <div class="title">Bride</div>
+<div class="names">Daughter of Rajani & Madhusoodanan</div>
+<img src="bride.jpg" class="round-img"> 
 <div class="names">Amrutha</div>
-<img class="round" src="bride.jpg">
-</section>
 
+
+</section>
+<section>
+    <div class="title">Bride's Family</div>
+    <div class="names">Madhusoodanan & Family</div>
+    <img src="bride-family.jpg" class="round-img">
+</section>
 <!-- 🪔 MUHURTHAM (FIXED LAYOUT + BUTTON) -->
 <section>
 <div class="title">Muhurtham</div>
@@ -316,10 +395,13 @@ Krishna Auditorium, Pazhaveed
 </section>
 
 <!-- MAP -->
-<div class="modal" id="modal">
-<div class="box">
-<iframe id="map"></iframe>
-</div>
+<div class="modal" id="modal" onclick="closeMap(event)">
+  <div class="box">
+
+   
+
+    <iframe id="map"></iframe>
+  </div>
 </div>
 
 <script>
@@ -366,11 +448,21 @@ setInterval(()=>{
 
 /* MAP */
 function openMap(place){
-  document.getElementById("map").src=
-  "https://www.google.com/maps?q="+encodeURIComponent(place)+"&output=embed";
+  document.getElementById("map").src =
+    "https://www.google.com/maps?q="+encodeURIComponent(place)+"&output=embed";
+  
   document.getElementById("modal").style.display="flex";
+  document.body.classList.add("no-scroll"); // ✅ STOP SCROLL
 }
 
+/* CLOSE FUNCTION (button + outside click) */
+function closeMap(e){
+  // close if button clicked OR outside box clicked
+  if(!e || e.target.id === "modal"){
+    document.getElementById("modal").style.display="none";
+    document.body.classList.remove("no-scroll"); // ✅ ENABLE SCROLL
+  }
+}
 /* SCROLL */
 const sections=document.querySelectorAll("section");
 window.addEventListener("scroll",()=>{
