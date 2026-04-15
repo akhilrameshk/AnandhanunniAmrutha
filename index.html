@@ -208,6 +208,71 @@ section:hover{
   animation:floatUp linear forwards;
 }
 
+/* 🎵 MUSIC BUTTON - FIXED LEFT */
+.music-control{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#b45309;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:9999;
+  backdrop-filter: blur(10px);
+  color: #fff;
+}
+
+/* ICON */
+.music-control i{
+  color:#fff;
+  font-size:18px;
+}
+
+/* SOUND BARS */
+.bars{
+  display:none;
+  gap:3px;
+   transform: rotate(180deg); 
+}
+
+.bars span{
+  width:3px;
+  height:12px;
+  background:#fff;
+  animation:wave 1s infinite ease-in-out;
+ 
+}
+
+.bars span:nth-child(2){animation-delay:0.2s;}
+.bars span:nth-child(3){animation-delay:0.4s;}
+
+@keyframes wave{
+  0%,100%{height:6px;}
+  50%{height:18px;}
+}
+
+/* PLAY STATE */
+.music-control.playing .bars{
+  display:flex;
+}
+
+.music-control.playing i{
+  display:none;
+}
+
+/* PAUSE STATE */
+.music-control.paused .bars{
+  display:none;
+}
+
+.music-control.paused i{
+  display:block;
+}
+
 @keyframes floatUp{
   0%{transform:translateY(0);opacity:1;}
   100%{transform:translateY(-120vh);opacity:0;}
@@ -408,7 +473,15 @@ Krishna Auditorium, Pazhaveed
  <audio id="bg-music" loop autoplay muted>
   <source src="./mangalyam.mp3" type="audio/mpeg">
 </audio>
-
+<!-- 🎵 MUSIC CONTROL BUTTON -->
+<div id="music-control" class="music-control paused">
+  <i class="fa-solid fa-music"></i>
+  <div class="bars">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
 
 <script>
 
@@ -501,6 +574,27 @@ function startMusic() {
 /* ALL possible user triggers */
 ["click","touchstart","scroll","keydown"].forEach(event => {
   document.addEventListener(event, startMusic, { once: true });
+});
+/* 🎵 MUSIC BUTTON CONTROL */
+const control = document.getElementById("music-control");
+
+control.addEventListener("click", function () {
+
+  if (music.paused) {
+    music.muted = false;
+    music.volume = 0.25;
+    music.play();
+
+    control.classList.remove("paused");
+    control.classList.add("playing");
+
+  } else {
+    music.pause();
+
+    control.classList.remove("playing");
+    control.classList.add("paused");
+  }
+
 });
 </script>
 
