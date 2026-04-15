@@ -405,9 +405,10 @@ Krishna Auditorium, Pazhaveed
   </div>
 </div>
 <!-- 🎵 KERALA WEDDING BACKGROUND MUSIC -->
-<audio id="bg-music" loop muted>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6b8f7c5b0d.mp3?filename=indian-temple-nadaswaram-110997.mp3" type="audio/mpeg">
+ <audio id="bg-music" loop autoplay muted>
+  <source src="./mangalyam.mp3" type="audio/mpeg">
 </audio>
+
 
 <script>
 
@@ -478,15 +479,29 @@ window.addEventListener("scroll",()=>{
   });
 });
 /* 🔊 AUTOPLAY FIX FOR MOBILE */
+const music = document.getElementById("bg-music");
+
 function startMusic() {
-  const music = document.getElementById("bg-music");
   music.muted = false;
-  music.play();
+  music.volume = 0.25;
+
+  const playPromise = music.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        console.log("Music started");
+      })
+      .catch(() => {
+        console.log("Autoplay blocked");
+      });
+  }
 }
 
-/* Mobile + Desktop support */
-document.addEventListener("touchstart", startMusic, { once: true });
-document.addEventListener("click", startMusic, { once: true });
+/* ALL possible user triggers */
+["click","touchstart","scroll","keydown"].forEach(event => {
+  document.addEventListener(event, startMusic, { once: true });
+});
 </script>
 
 </body>
