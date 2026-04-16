@@ -48,7 +48,28 @@ body::before{
   10%{opacity:1}
   100%{transform:translateY(110vh);opacity:0}
 }
-
+@keyframes floaty {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0.0);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0.0);
+  }
+}
 /* 🛕 HEADER */
 header{
   height:65vh;
@@ -213,8 +234,8 @@ section:hover{
   position:fixed;
   bottom:20px;
   left:20px;
-  width:55px;
-  height:55px;
+  width: 38px;
+  height:38px;
   border-radius:50%;
   background:#b45309;
   display:flex;
@@ -229,7 +250,7 @@ section:hover{
 /* ICON */
 .music-control i{
   color:#fff;
-  font-size:18px;
+  font-size:15px;
 }
 
 /* SOUND BARS */
@@ -302,12 +323,37 @@ section:hover{
   border-radius:50%;
   border:3px solid #f59e0b;
   object-fit:cover;
-  transition:.4s;
+
+  /* smooth performance-friendly animation */
+  animation: gentleFloat 4s ease-in-out infinite;
+
+  /* smooth interaction */
+  transition: transform .3s ease, box-shadow .3s ease;
+  will-change: transform;
 }
 
-/* HOVER EFFECT */
+/* hover (desktop only effect feel) */
 .img-box:hover .round-img{
-  transform:scale(1.1);
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35);
+}
+
+/* mobile-friendly smooth floating */
+@keyframes gentleFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* optional soft glow ring */
+.round-img{
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
 .overlay{
@@ -410,12 +456,12 @@ Bride’s Residence
 <section>
     <div class="title">Groom's Family</div>
     <div class="names">Sabu Nalanunni & Family</div>
-    <img src="groom-family.jpg" class="round-img">
+    <img src="groom-family.jpeg" class="round-img">
 </section>
 <!-- 👰 BRIDE -->
 <section>
 <div class="title">Bride</div>
-<div class="names">Daughter of Rajani & Madhusoodanan</div>
+<div class="names">Daughter of Mukthar & Rajani</div>
 <img src="bride.jpeg" class="round-img"> 
 <div class="names">Amrutha</div>
 
@@ -423,8 +469,8 @@ Bride’s Residence
 </section>
 <section>
     <div class="title">Bride's Family</div>
-    <div class="names">Madhusoodanan & Family</div>
-    <img src="bride-family.jpg" class="round-img">
+    <div class="names">Mukthar & Family</div>
+    <img src="bride-family.jpeg" class="round-img">
 </section>
 <!-- 🪔 MUHURTHAM (FIXED LAYOUT + BUTTON) -->
 <section>
@@ -438,7 +484,7 @@ Bride’s Residence
 Bride’s Residence
 </div>
 
-<button class="btn" onclick="openMap('Bride Residence')">
+<button class="btn" onclick="openMap('https://www.google.com/maps?q=St.%20Mary%20of%20Leuca%20Senior%20Secondary%20School,%20Cherthala-Arookkutty%20Road,%20Pallipuram,%20Kerala%20688541&output=embed')">
 <i class="fa-solid fa-location-dot red-pin"></i> View Location
 </button>
 </section>
@@ -455,7 +501,7 @@ Krishna Auditorium, Pazhaveed
 
 <p>6:00 PM onwards</p>
 
-<button class="btn" onclick="openMap('Krishna Auditorium Pazhaveed')">
+<button class="btn" onclick="openMap('https://www.google.com/maps?q=Krishna%20Convention%20Centre%2C%20Alappuzha%2C%20Kerala&output=embed')">
 <i class="fa-solid fa-location-dot red-pin"></i> View Map
 </button>
 </section>
@@ -484,7 +530,63 @@ Krishna Auditorium, Pazhaveed
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
 
+  const h1 = document.querySelector(".hero h1");
+  const content = document.querySelector(".hero .content");
+  const countdown = document.querySelector(".countdown-box");
+
+  const nameParts = [
+    "Anandhanunni",
+    "❤️",
+    "Amrutha"
+  ];
+
+  content.style.opacity = "0";
+  countdown.style.opacity = "0";
+
+  h1.innerHTML = "";
+
+  let i = 0;
+  let line = 0;
+
+  function typeName() {
+
+    if (line < nameParts.length) {
+
+      if (i === 0 && line !== 0) {
+        h1.innerHTML += "<br>";
+      }
+
+      const text = nameParts[line];
+
+      if (i < text.length) {
+        h1.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeName, 120);
+      } else {
+        line++;
+        i = 0;
+        setTimeout(typeName, 300);
+      }
+
+    } else {
+      setTimeout(showContent, 400);
+    }
+  }
+
+  function showContent() {
+    content.style.transition = "opacity 1s ease";
+    content.style.opacity = "1";
+
+    setTimeout(() => {
+      countdown.style.transition = "opacity 1s ease";
+      countdown.style.opacity = "1";
+    }, 500);
+  }
+
+  typeName();
+});
 /* 🌸 FLOWERS */
 const flowers=document.querySelector('.flowers');
 ["🌸","🌼","🪔"].forEach(e=>{
@@ -526,13 +628,13 @@ setInterval(()=>{
 },1000);
 
 /* MAP */
-function openMap(place){
-  document.getElementById("map").src =
-    "https://www.google.com/maps?q="+encodeURIComponent(place)+"&output=embed";
-  
-  document.getElementById("modal").style.display="flex";
-  document.body.classList.add("no-scroll"); // ✅ STOP SCROLL
+
+function openMap(url) {
+  document.getElementById("map").src = url;
+  document.getElementById("modal").style.display = "flex";
+  document.body.classList.add("no-scroll");
 }
+
 
 /* CLOSE FUNCTION (button + outside click) */
 function closeMap(e){
