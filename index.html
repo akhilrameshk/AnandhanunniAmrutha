@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta property="og:title" content="Anandhanunni ❤️ Amrutha">
+<meta property="og:description" content="May 3rd, 2026 | You are warmly invited 💖">
+<meta property="og:image" content="https://anandhanunniamrutha.onrender.com/preview.png">
+<meta property="og:url" content="https://anandhanunniamrutha.onrender.com/">
+<meta property="og:type" content="website">
 <title>Anandhanunni ❤️ Amrutha</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -72,7 +76,7 @@ body::before{
 }
 /* 🛕 HEADER */
 header{
-  height:65vh;
+  height:70vh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -94,7 +98,7 @@ header::after{
   background:linear-gradient(to bottom,rgba(90,0,0,.55),rgba(0,0,0,.7));
 }
 
-.hero{z-index:2;color:#fff;}
+.hero{z-index:2;color:#fff;margin-top: 10px;}
 
 h1{
   font-size:50px;
@@ -110,7 +114,7 @@ h1:hover{
 /* 🪔 HEADER CONTENT (FIXED) */
 .content{
   margin-top:10px;
-  font-family:'Poppins';
+   font-family:'Great Vibes';
 }
 
 .location-info{
@@ -405,6 +409,54 @@ body.no-scroll{
   font-size:16px;
 }
 
+/* ⬆️⬇️ ARROW BUTTON - FIXED RIGHT */
+.arrow-btn{
+  left: auto;       /* remove left */
+  right: 20px;      /* move to right */
+  bottom: 20px;     /* same level as music */
+  background:#b45309; /* SAME color */
+}
+
+/* icon style same as music */
+.arrow-btn i{
+  color:#fff;
+  font-size:15px;
+}
+
+/* click feel */
+.arrow-btn:active{
+  transform: scale(0.9);
+}
+
+/* optional: subtle glow */
+.arrow-btn{
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* 📤 SHARE BUTTON - RIGHT SIDE (above arrow) */
+.share-btn{
+  left: auto;
+  right: 20px;
+  bottom: 70px; /* above arrow button */
+  background:#25D366; /* WhatsApp green */
+}
+
+/* icon */
+.share-btn i{
+  color:#fff;
+  font-size:16px;
+}
+
+/* click feel */
+.share-btn:active{
+  transform: scale(0.9);
+}
+
+/* subtle glow */
+.share-btn{
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
 iframe{width:100%;height:280px;border:0;}
 
 </style>
@@ -529,7 +581,14 @@ Krishna Auditorium, Pazhaveed
   </div>
 </div>
 
+<div id="shareBtn" class="music-control share-btn">
+  <i class="fa-brands fa-whatsapp"></i>
+</div>
+<div id="scrollToggleBtn" class="music-control arrow-btn">
+  <i class="fa-solid fa-arrow-down"></i>
+</div>
 <script>
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const h1 = document.querySelector(".hero h1");
@@ -542,51 +601,79 @@ document.addEventListener("DOMContentLoaded", () => {
     "Amrutha"
   ];
 
-  content.style.opacity = "0";
-  countdown.style.opacity = "0";
+  let isAtTop = true; // track scroll state
 
-  h1.innerHTML = "";
+  function startAnimation(){
 
-  let i = 0;
-  let line = 0;
+    content.style.opacity = "0";
+    countdown.style.opacity = "0";
+    h1.innerHTML = "";
 
-  function typeName() {
+    let i = 0;
+    let line = 0;
 
-    if (line < nameParts.length) {
+    function typeName() {
 
-      if (i === 0 && line !== 0) {
-        h1.innerHTML += "<br>";
-      }
+      if (line < nameParts.length) {
 
-      const text = nameParts[line];
+        if (i === 0 && line !== 0) {
+          h1.innerHTML += "<br>";
+        }
 
-      if (i < text.length) {
-        h1.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeName, 120);
+        const text = nameParts[line];
+
+        if (i < text.length) {
+          h1.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeName, 120);
+        } else {
+          line++;
+          i = 0;
+          setTimeout(typeName, 300);
+        }
+
       } else {
-        line++;
-        i = 0;
-        setTimeout(typeName, 300);
+        setTimeout(showContent, 400);
       }
-
-    } else {
-      setTimeout(showContent, 400);
     }
+
+    function showContent() {
+      content.style.transition = "opacity 1s ease";
+      content.style.opacity = "1";
+
+      setTimeout(() => {
+        countdown.style.transition = "opacity 1s ease";
+        countdown.style.opacity = "1";
+      }, 500);
+    }
+
+    typeName();
   }
 
-  function showContent() {
-    content.style.transition = "opacity 1s ease";
-    content.style.opacity = "1";
+  // run first time
+  startAnimation();
 
-    setTimeout(() => {
-      countdown.style.transition = "opacity 1s ease";
-      countdown.style.opacity = "1";
-    }, 500);
-  }
+  // 🔥 restart when scroll to top
+  window.addEventListener("scroll", () => {
 
-  typeName();
+    const currentScroll = window.scrollY;
+
+    if (currentScroll < 50 && !isAtTop) {
+      isAtTop = true;
+
+      setTimeout(() => {
+        startAnimation(); // ✍️ restart typing
+      }, 300);
+    }
+
+    if (currentScroll > 100) {
+      isAtTop = false;
+    }
+
+  });
+
 });
+
 /* 🌸 FLOWERS */
 const flowers=document.querySelector('.flowers');
 ["🌸","🌼","🪔"].forEach(e=>{
@@ -698,7 +785,116 @@ control.addEventListener("click", function () {
   }
 
 });
-</script>
 
+
+const btn = document.getElementById("scrollToggleBtn");
+const icon = btn.querySelector("i");
+
+function updateArrow(){
+  if (window.scrollY < 100) {
+    icon.className = "fa-solid fa-arrow-down";
+  } else {
+    icon.className = "fa-solid fa-arrow-up";
+  }
+}
+
+window.addEventListener("scroll", updateArrow);
+
+btn.addEventListener("click", () => {
+
+  if (window.scrollY < 100) {
+    // go down
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  } else {
+    // go top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    setTimeout(() => {
+      startAnimation(); // your typing restart
+    }, 500);
+  }
+
+});
+
+let isAtTop = true; // track state
+
+window.addEventListener("scroll", () => {
+
+  const currentScroll = window.scrollY;
+
+  // toggle arrow icon
+  if (currentScroll < 100) {
+    icon.className = "fa-solid fa-arrow-down";
+  } else {
+    icon.className = "fa-solid fa-arrow-up";
+  }
+
+  // 🔥 restart animation ONLY when reaching top
+  if (currentScroll < 50 && !isAtTop) {
+    isAtTop = true;
+
+    setTimeout(() => {
+      startAnimation(); // ✍️ restart typing
+    }, 300);
+  }
+
+  // user moved down
+  if (currentScroll > 100) {
+    isAtTop = false;
+  }
+
+});
+
+updateArrow();
+
+
+
+</script>
+<script>
+document.getElementById("shareBtn").addEventListener("click", () => {
+
+  const website = "https://anandhanunniamrutha.onrender.com/";
+
+  const message = `‎ 
+        Anandhanunni  
+              ❤️  
+           Amrutha  
+
+📅 May 3rd, 2026  
+🪔 Muhurtham: 11:55 AM – 12:15 PM  
+
+📍 Bride’s Residence  
+
+🌐 View Invitation:
+${website}
+
+━━━━━━━━━━━━━━━━━━━
+
+🎉 Reception Venue  
+Krishna Convention Centre, Alappuzha  
+https://www.google.com/maps/search/?api=1&query=Krishna+Convention+Centre+Alappuzha  
+
+━━━━━━━━━━━━━━━━━━━
+
+💒 Wedding Venue  
+St. Mary of Leuca Senior Secondary School  
+https://www.google.com/maps/search/?api=1&query=St.+Mary+of+Leuca+Senior+Secondary+School+Pallipuram  
+
+━━━━━━━━━━━━━━━━━━━
+
+💖 You are warmly invited 💖`;
+
+  const url = "https://wa.me/?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+
+});
+</script>
 </body>
 </html>
