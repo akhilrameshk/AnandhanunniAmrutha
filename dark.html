@@ -455,9 +455,35 @@ musicBtn.onclick=()=>{
   }
 };
 
+
 /* SHARE */
-shareBtn.onclick=()=>{
-  window.open("https://wa.me/?text="+encodeURIComponent("You're invited ❤️ https://anandhanunniamrutha.onrender.com/"));
+shareBtn.onclick = () => {
+
+  const website = "https://anandhanunniamrutha.onrender.com/";
+
+  const message = `🌐 View Invitation:
+${website}
+
+━━━━━━━━━━━━━━━━━━━
+
+🎉 Reception Venue  
+Krishna Convention Centre, Alappuzha  
+https://www.google.com/maps/search/?api=1&query=Krishna+Convention+Centre+Alappuzha  
+
+━━━━━━━━━━━━━━━━━━━
+
+💒 Wedding Venue  
+St. Mary of Leuca Senior Secondary School, Pallipuram  
+https://www.google.com/maps/search/?api=1&query=St.+Mary+of+Leuca+Senior+Secondary+School+Pallipuram  
+
+━━━━━━━━━━━━━━━━━━━
+
+💖 You are warmly invited 💖`;
+
+  window.open(
+    "https://wa.me/?text=" + encodeURIComponent(message),
+    "_blank"
+  );
 };
 
 /* SCROLL */
