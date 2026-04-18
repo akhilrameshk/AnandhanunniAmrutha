@@ -71,7 +71,7 @@ body.light .title{color:#b45309}
   align-items:center;
   justify-content:center;
   text-align:center;
-  background:url('couple.jpeg') center/cover;
+  background:url('dt-couple.jpeg') center/cover;
   transition:0.4s ease;
 }
 
@@ -79,13 +79,13 @@ body.light .title{color:#b45309}
 body:not(.light) .hero{
   background:
   linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
-  url('couple.jpeg') center/cover;
+  url('dt-couple.jpeg') center/cover;
 }
 
 /* ☀️ LIGHT THEME (soft overlay instead of full dark) */
 body.light .hero{
   background:linear-gradient(to bottom,rgba(90,0,0,.55),rgba(0,0,0,.7)),
-  url('couple.jpeg') center/cover;
+  url('dt-couple.jpeg') center/cover;
 }
 .hero h1{
   font-family:'Great Vibes';
@@ -280,6 +280,27 @@ body.light .card{
 
 /* active state */
 .music.playing .bars{display:flex}
+.hero-content{
+  text-align:center;
+  padding:20px;
+}
+
+/* TYPEWRITER */
+#typeText{
+  font-family:'Great Vibes';
+  font-size:50px;
+  color:#ffd700;
+}
+
+#typeText::after{
+  content:"|";
+  animation:blink 0.7s infinite;
+  margin-left:5px;
+}
+
+@keyframes blink{
+  50%{opacity:0}
+}
 </style>
 </head>
 
@@ -289,34 +310,36 @@ body.light .card{
 
 <!-- HERO -->
 <div class="hero">
-  <div>
-    <h1>Anandhanunni <br>❤️<br> Amrutha</h1>
+  <div class="hero-content">
 
-    <!-- LOCATION RESTORED -->
-    
-<div class="content">
-🗓 May 3rd, 2026 <br>
-🪔 Muhurtham: 11:55 AM – 12:15 PM
+    <h1>
+      <span id="typeText"></span>
+    </h1>
 
-<div class="location-info">
-<i class="fa-solid fa-location-dot red-pin"></i>
-Bride’s Residence
-</div>
-</div>
+    <div class="content">
+      🗓 May 3rd, 2026 <br>
+      🪔 Muhurtham: 11:55 AM – 12:15 PM
 
-  <!-- 🔥 TIMER -->
-<div class="countdown-box">
-<div class="time"><span id="days">00</span><small>Days</small></div>
-<div class="time"><span id="hours">00</span><small>Hours</small></div>
-<div class="time"><span id="minutes">00</span><small>Min</small></div>
-<div class="time"><span id="seconds">00</span><small>Sec</small></div>
-</div>
+      <div class="location-info">
+        <i class="fa-solid fa-location-dot red-pin"></i>
+        Bride’s Residence
+      </div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-box">
+      <div class="time"><span id="days">00</span><small>Days</small></div>
+      <div class="time"><span id="hours">00</span><small>Hours</small></div>
+      <div class="time"><span id="minutes">00</span><small>Min</small></div>
+      <div class="time"><span id="seconds">00</span><small>Sec</small></div>
+    </div>
+
   </div>
 </div>
 
 <!-- GROOM -->
 <div class="section">
-  <img src="groom.jpeg">
+  <img src="dt-groom.jpeg">
   <div>
     <div class="title">Groom</div>
     <div class="names">Anandhanunni</div>
@@ -337,7 +360,7 @@ Bride’s Residence
 
 <!-- GROOM FAMILY -->
 <div class="section">
-  <img src="groom-family.jpeg">
+  <img src="dt-groom-family.png">
   <div>
     <div class="title">Groom Family</div>
     <div class="names-deails">Sabu Nalanunni & Family</div>
@@ -432,14 +455,27 @@ setInterval(()=>{
 },400);
 
 /* COUNTDOWN */
-const date=new Date("May 3, 2026 11:55:00").getTime();
-setInterval(()=>{
-  let gap=date-new Date().getTime();
-  d.innerText=Math.floor(gap/(1000*60*60*24));
-  h.innerText=Math.floor((gap/(1000*60*60))%24);
-  m.innerText=Math.floor((gap/(1000*60))%60);
-  s.innerText=Math.floor((gap/1000)%60);
-},1000);
+const date = new Date("May 3, 2026 11:55:00").getTime();
+
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
+
+function updateTimer() {
+  let now = new Date().getTime();
+  let gap = date - now;
+
+  if (gap < 0) gap = 0;
+
+  daysEl.innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+  hoursEl.innerText = Math.floor((gap / (1000 * 60 * 60)) % 24);
+  minutesEl.innerText = Math.floor((gap / (1000 * 60)) % 60);
+  secondsEl.innerText = Math.floor((gap / 1000) % 60);
+}
+
+updateTimer(); // run immediately
+setInterval(updateTimer, 1000);
 
 /* MUSIC */
 const music=document.getElementById("music");
@@ -532,6 +568,79 @@ themeBtn.onclick=()=>{
   setTheme(newTheme);
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  const h1 = document.querySelector(".hero h1");
+  const content = document.querySelector(".hero .content");
+  const countdown = document.querySelector(".hero .countdown-box");
+
+  const nameParts = ["Anandhanunni", "❤️", "Amrutha"];
+
+  let isAtTop = true;
+
+  function startAnimation() {
+
+    content.style.opacity = "0";
+    countdown.style.opacity = "0";
+    h1.innerHTML = "";
+
+    let i = 0;
+    let line = 0;
+
+    function typeName() {
+
+      if (line < nameParts.length) {
+
+        if (i === 0 && line !== 0) {
+          h1.innerHTML += "<br>";
+        }
+
+        const text = nameParts[line];
+
+        if (i < text.length) {
+          h1.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeName, 120);
+        } else {
+          line++;
+          i = 0;
+          setTimeout(typeName, 300);
+        }
+
+      } else {
+        setTimeout(showContent, 400);
+      }
+    }
+
+    function showContent() {
+      content.style.transition = "opacity 1s ease";
+      content.style.opacity = "1";
+
+      setTimeout(() => {
+        countdown.style.transition = "opacity 1s ease";
+        countdown.style.opacity = "1";
+      }, 500);
+    }
+
+    typeName();
+  }
+
+  startAnimation();
+
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+
+    if (scrollY < 50 && !isAtTop) {
+      isAtTop = true;
+      setTimeout(startAnimation, 300);
+    }
+
+    if (scrollY > 100) {
+      isAtTop = false;
+    }
+  });
+
+});
 </script>
 
 </body>
