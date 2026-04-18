@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Anandhanunni ❤️ Amrutha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0a0a0a;
+  color:#eee;
+  transition:.4s;
+}
+
+/* 🌙 LIGHT MODE */
+body.light{
+  background:#fffaf3;
+  color:#222;
+}
+
+
+body.light .card{
+  background:#fff;
+  color:#222;
+}
+
+body.light .title{color:#b45309}
+
+/* 🌸 FLOATING */
+.flowers{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+}
+
+.float{
+  position:absolute;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10vh);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(110vh);opacity:0}
+}
+
+/* ❤️ HEART */
+.love{
+  position:fixed;
+  bottom:-20px;
+  animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+  100%{transform:translateY(-120vh);opacity:0;}
+}
+
+/* HERO */
+.hero{
+  height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:url('couple.jpeg') center/cover;
+  transition:0.4s ease;
+}
+
+/* 🌑 DARK THEME */
+body:not(.light) .hero{
+  background:
+  linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
+  url('couple.jpeg') center/cover;
+}
+
+/* ☀️ LIGHT THEME (soft overlay instead of full dark) */
+body.light .hero{
+  background:linear-gradient(to bottom,rgba(90,0,0,.55),rgba(0,0,0,.7)),
+  url('couple.jpeg') center/cover;
+}
+.hero h1{
+  font-family:'Great Vibes';
+  font-size:50px;
+  color:#ffd700;
+}
+.content{
+ 
+   font-family:'Great Vibes';
+   margin: 15px 0px;
+   color: #fff;
+}
+
+/* LOCATION */
+.location-info{
+  margin-top:10px;
+  font-size:14px;
+}
+
+.red-pin{
+  color:#e11d48;
+  margin-right:5px;
+}
+
+
+/* 🔥 COUNTDOWN */
+.countdown-box{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:15px;
+  flex-wrap:wrap;
+}
+
+.time{
+  min-width:80px;
+  padding:14px 12px;
+  border-radius:16px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;   /* 🔥 stack vertically */
+  align-items:center;
+  justify-content:center;
+  gap:4px;                /* 🔥 space between number & text */
+
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,215,0,0.35);
+  backdrop-filter: blur(8px);
+}
+
+/* NUMBER */
+.time span{
+  font-size:28px;
+  font-weight:bold;
+  color:#ffd700;
+  font-family:'Great Vibes';
+  line-height:1;
+}
+
+/* LABEL (Days, Hours...) */
+.time small{
+  font-size:12px;
+  color:#fff3e6;
+  letter-spacing:1px;
+}
+
+/* SECTION */
+.section{
+  max-width:1000px;
+  margin:80px auto;
+  display:flex;
+  align-items:center;
+  gap:40px;
+  padding:20px;
+}
+
+.section.reverse{
+  flex-direction:row-reverse;
+}
+
+.section img{
+  width:150px;
+  height:150px;
+  border-radius:20px;
+  border:2px solid #ffd700;
+}
+
+/* TEXT */
+.title{
+  font-family:'Great Vibes';
+  font-size:32px;
+  color:#ffd700;
+}
+
+.names{
+  font-family:'Great Vibes';
+  font-size:28px;
+}
+
+.names-deails{
+  font-family:'Great Vibes';
+  font-size:18px;
+}
+
+/* EVENTS */
+.events{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  max-width:1000px;
+  margin:80px auto;
+}
+
+.card{
+  flex:1;
+  background:#111;
+  padding:30px;
+  border-radius:20px;
+  border:1px solid #222;
+  text-align:center;
+}
+body.light .card{
+  background:#fffaf3;
+  border:1px solid #ddd;
+}
+.btn{
+  margin-top:15px;
+  padding:10px 20px;
+  border:none;
+  background:#b45309;
+  color:#fff;
+  border-radius:20px;
+}
+
+/* CONTROLS */
+.control{
+  position:fixed;
+  width:40px;height:40px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:999;
+}
+
+.music{left:20px;bottom:20px;background:#b45309;color:#fff;}
+.share{right:20px;bottom:80px;background:#25D366;color:#fff;}
+.arrow{right:20px;bottom:20px;background:#b45309;color:#fff;}
+.theme{right:20px;bottom:140px;background:#b45309;color:#fff;}
+.bars{
+  display:none;
+  gap:3px;
+  position:absolute;
+  bottom:-6px;
+  transform:rotate(180deg);
+}
+
+.bars span{
+  width:3px;
+  height:10px;
+  background:#fff;
+  animation:wave 1s infinite ease-in-out;
+}
+
+.bars span:nth-child(2){animation-delay:0.2s}
+.bars span:nth-child(3){animation-delay:0.4s}
+.music i{
+  display:block;
+}
+
+/* hide bars by default */
+.music .bars{
+  display:none;
+  position:absolute;
+  gap:3px;
+  bottom:12px;
+}
+
+/* when playing */
+.music.playing i{
+  display:none;
+}
+
+.music.playing .bars{
+  display:flex;
+}
+@keyframes wave{
+  0%,100%{height:6px}
+  50%{height:16px}
+}
+
+/* active state */
+.music.playing .bars{display:flex}
+</style>
+</head>
+
+<body>
+
+<div class="flowers"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Anandhanunni <br>❤️<br> Amrutha</h1>
+
+    <!-- LOCATION RESTORED -->
+    
+<div class="content">
+🗓 May 3rd, 2026 <br>
+🪔 Muhurtham: 11:55 AM – 12:15 PM
+
+<div class="location-info">
+<i class="fa-solid fa-location-dot red-pin"></i>
+Bride’s Residence
+</div>
+</div>
+
+  <!-- 🔥 TIMER -->
+<div class="countdown-box">
+<div class="time"><span id="days">00</span><small>Days</small></div>
+<div class="time"><span id="hours">00</span><small>Hours</small></div>
+<div class="time"><span id="minutes">00</span><small>Min</small></div>
+<div class="time"><span id="seconds">00</span><small>Sec</small></div>
+</div>
+  </div>
+</div>
+
+<!-- GROOM -->
+<div class="section">
+  <img src="groom.jpeg">
+  <div>
+    <div class="title">Groom</div>
+    <div class="names">Anandhanunni</div>
+    <p class="names-deails">Son of Sabu Nalanunni & Suprabha</p>
+  </div>
+</div>
+
+<!-- BRIDE -->
+<div class="section reverse">
+  <img src="bride.jpeg">
+  <div>
+    <div class="title">Bride</div>
+    <div class="names">Amrutha</div>
+    <p class="names-deails">Daughter of Mukthar & Rajani</p>
+  </div>
+</div>
+
+<!-- EVENTS -->
+
+
+  <div class="card">
+    <div class="title">Muhurtham</div>
+    <p class="names-deails">May 3rd <br>11:55 AM – 12:15 PM</p>
+
+    <div class="location-info names-deails" style="margin-top:10px;">
+      <i class="fa-solid fa-location-dot red-pin "></i>
+      Bride’s Residence
+    </div>
+
+    <button class="btn"
+      onclick="window.open('https://www.google.com/maps?q=St.+Mary+of+Leuca')">
+      View Location
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="title">Reception</div>
+    <p class="names-deails">6:00 PM onwards</p>
+
+    <div class="location-info names-deails" style="margin-top:10px;">
+      <i class="fa-solid fa-location-dot red-pin "></i>
+      Krishna Auditorium, Pazhaveed
+    </div>
+
+    <button class="btn"
+      onclick="window.open('https://www.google.com/maps?q=Krishna+Convention')">
+      View Location
+    </button>
+  </div>
+
+
+
+<!-- AUDIO -->
+<audio id="music" loop>
+  <source src="mangalyam.mp4">
+</audio>
+
+<div class="control music" id="musicBtn">
+  <i class="fa-solid fa-music"></i>
+
+  <div class="bars">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<div class="control share" id="shareBtn"><i class="fa-brands fa-whatsapp"></i></div>
+<div class="control arrow" id="arrowBtn"><i class="fa-solid fa-arrow-down"></i></div>
+<div class="control theme" id="themeBtn"><i class="fa-solid fa-moon"></i></div>
+
+<script>
+
+/* 🌸 FLOWERS */
+const flowers=document.querySelector('.flowers');
+["🌸","🌼","🪔"].forEach(e=>{
+  for(let i=0;i<8;i++){
+    let d=document.createElement('div');
+    d.className="float";
+    d.innerHTML=e;
+    d.style.left=Math.random()*100+"vw";
+    d.style.animationDuration=(5+Math.random()*5)+"s";
+    flowers.appendChild(d);
+  }
+});
+
+/* ❤️ HEARTS */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="love";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*2)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+},400);
+
+/* COUNTDOWN */
+const date=new Date("May 3, 2026 11:55:00").getTime();
+setInterval(()=>{
+  let gap=date-new Date().getTime();
+  d.innerText=Math.floor(gap/(1000*60*60*24));
+  h.innerText=Math.floor((gap/(1000*60*60))%24);
+  m.innerText=Math.floor((gap/(1000*60))%60);
+  s.innerText=Math.floor((gap/1000)%60);
+},1000);
+
+/* MUSIC */
+const music=document.getElementById("music");
+const musicBtn=document.getElementById("musicBtn");
+
+musicBtn.onclick=()=>{
+  if(music.paused){
+    music.play();
+    musicBtn.classList.add("playing");
+  }else{
+    music.pause();
+    musicBtn.classList.remove("playing");
+  }
+};
+
+/* SHARE */
+shareBtn.onclick=()=>{
+  window.open("https://wa.me/?text="+encodeURIComponent("You're invited ❤️ https://anandhanunniamrutha.onrender.com/"));
+};
+
+/* SCROLL */
+const arrowBtn=document.getElementById("arrowBtn");
+const arrowIcon=arrowBtn.querySelector("i");
+
+function updateArrow(){
+  if(window.scrollY < 100){
+    arrowIcon.className="fa-solid fa-arrow-down";
+  }else{
+    arrowIcon.className="fa-solid fa-arrow-up";
+  }
+}
+
+window.addEventListener("scroll",updateArrow);
+updateArrow(); // IMPORTANT initial state
+
+arrowBtn.onclick=()=>{
+  if(window.scrollY < 100){
+    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+  }else{
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+};
+
+/* 🌙 THEME FIXED */
+const themeBtn=document.getElementById("themeBtn");
+const icon=themeBtn.querySelector("i");
+
+function setTheme(mode){
+  if(mode==="light"){
+    document.body.classList.add("light");
+    icon.className="fa-solid fa-sun";
+  }else{
+    document.body.classList.remove("light");
+    icon.className="fa-solid fa-moon";
+  }
+}
+
+setTheme(localStorage.getItem("theme") || "dark");
+
+themeBtn.onclick=()=>{
+  const isLight=document.body.classList.contains("light");
+  const newTheme=isLight?"dark":"light";
+  localStorage.setItem("theme",newTheme);
+  setTheme(newTheme);
+};
+
+</script>
+
+</body>
+</html>
+
